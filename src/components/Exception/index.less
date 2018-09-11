@@ -1,0 +1,45 @@
+@import '../../assets/styles/default.less';
+
+.container{
+    width: 100%;
+}
+
+.content{
+    display: flex;
+    height: 360px;
+    margin: 60px 0;
+    align-items: center
+}
+
+.imgBlock{
+    flex: 0 0 60%;
+    max-height: 360px;
+    overflow: hidden;
+    >div{
+        width: 100%;
+        max-width: 430px;
+        height: 360px;
+        float: right;
+    }
+}
+
+.descBlock{
+    max-height: 360px;
+    padding-left: 100px;
+    
+    >h1{
+        display: block;
+        color: @colorS;
+        font-size: 50px;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+        line-height: 1;
+    }
+    >.desc{
+        display: block;
+        color: @colorG;
+        font-size: 18px;
+        margin: 20px 0;
+    }
+}

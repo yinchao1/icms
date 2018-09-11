@@ -1,0 +1,65 @@
+@import '../../assets/styles/default.less';
+
+.header{
+    position: relative;
+    height: 64px;
+    padding: 0 12px 0 0;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+:global{
+    .ant-layout{
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+}
+
+.menu{
+    :global(.antion){
+        margin-right: 8px;
+    }
+    ::global(.ant-dropdown-menu-item){
+        width: 160px;
+    }
+}
+
+i.trigger{
+    vertical-align: middle;
+    cursor: pointer;
+    padding: 0 24px;
+    transition: all 0.3s;
+    :hover{
+        background-color: @colorO;
+    }
+}
+
+.right{
+    float: right;
+    height: 100%;
+    .action{
+        height: 100%;
+        cursor: pointer;
+        padding: 0 12px;
+        display: inline-block;
+        transition: all 0.3s;
+        vertical-align: middle;
+        >i{
+            vertical-align: middle;
+            font-size: 16px;
+        }
+        &:hover{
+            background-color: @colorO;
+        }
+    }
+}
+
+.account{
+    .avatar{
+        background: rgba(255, 255, 255, 0.85);
+    }
+    .name{
+        font-size: 14px;
+        color: @colorC;
+    }
+}
