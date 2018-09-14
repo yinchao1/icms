@@ -10,6 +10,10 @@ class Register extends React.Component{
         prefix: "86"
     }
 
+    handleLogin=()=>{
+        this.props.history.push("/login");
+    }
+
     handleRegister=()=>{
         let userInfo = this.props.form.getFieldsValue();
         message.info(userInfo.email);
@@ -88,7 +92,7 @@ class Register extends React.Component{
                                 type="primary" 
                                 onClick={this.handleRegister}
                                 style={{width: '100px', height: '35px', fontSize: '16px'}}>注册</Button>
-                            <span>使用已有账号登录</span>
+                            <span onClick={this.handleLogin}>使用已有账号登录</span>
                         </div>
                     </div>
                 </div>

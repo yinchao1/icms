@@ -1,8 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import { Menu, Icon, Tooltip, Spin, Dropdown, Avatar } from 'antd';
 import styles from './index.less'
 
-export default class GlobalHeader extends React.PureComponent{
+class GlobalHeader extends React.PureComponent{
     
     toggle=(collapsed)=>{
         const { onCollapse } = this.props;
@@ -11,7 +12,8 @@ export default class GlobalHeader extends React.PureComponent{
 
     render(){
         const{
-            currentUser = {},
+            menuName,
+            userName,
             collapsed,
             onMenuClick,
         } = this.props;
@@ -37,18 +39,19 @@ export default class GlobalHeader extends React.PureComponent{
                     className={styles.trigger}
                     type={collapsed ? 'menu-unfold' : 'menu-fold'}
                     onClick={this.toggle}/>
+                <span className={styles.title}>{menuName}</span>
                 <div className={styles.right}>
                     <Tooltip title="使用说明" className={styles.action}>
                         <a target="_blank" href=""/>
                         <Icon type="question-circle-o"/>
                     </Tooltip>
-                    {currentUser.name?
+                    {userName?
                     (<Dropdown 
                         overlay={menu}
                         placement="bottomLeft">
                         <span className={`${styles.action} ${styles.account}`}>
                             <Avatar icon="user" shape="default" alt="U" className={styles.avatar}/>
-                            <span className={styles.name}>{currentUser.name}</span>
+                            <span className={styles.name}>{userName}</span>
                         </span>
                     </Dropdown>):(<Spin size="small" indicator={<Icon type="loading" style={{fontSize:12}} spin/>}/>)}
                 </div>
@@ -56,3 +59,10 @@ export default class GlobalHeader extends React.PureComponent{
         );
     }
 }
+
+export default connect(state => {
+    return {
+        userName: state.userName,
+        menuName: state.menuName
+    }
+})(GlobalHeader)

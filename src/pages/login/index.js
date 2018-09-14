@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux';
+import {login} from '../../redux/action';
 import { Form, Input, Icon, Button, Tabs, Row, Col, Checkbox, message } from 'antd';
 import logo from '../../assets/images/logo.svg';
 import styles from './index.less';
@@ -16,18 +18,26 @@ class Login extends React.Component{
     }
 
     handleRegister=()=>{
-        window.location.href = "http://localhost:3000/#/user/register";
+        //window.location.href = "http://localhost:3000/#/user/register";
+        this.props.history.push("/register");
     }
 
     handleLogin=()=>{
+        let account = {};
         if(this.state.activeKey === "1"){
-            let account = this.props.form.getFieldsValue(["username", "password"]);
+            account = this.props.form.getFieldsValue(["username", "password"]);
             message.info("用户名:" + account.username + ",密码:" + account.password);
         }else{
-            let account = this.props.form.getFieldsValue(["phone", "code"]);
+            account = this.props.form.getFieldsValue(["phone", "code"]);
             message.info("手机号:" + account.phone + ",验证码:" + account.code);
         }
-        window.location.href = "http://localhost:3000/";
+        
+        // window.location.href = "http://localhost:3000/home";
+
+        const {dispatch} = this.props;
+        dispatch(login(account.username));
+
+        this.props.history.push("/home");
     }
 
     render(){
@@ -142,4 +152,4 @@ class Login extends React.Component{
     }
 }
 
-export default Form.create()(Login);
+export default connect()(Form.create()(Login));

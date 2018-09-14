@@ -1,12 +1,14 @@
 import React from 'react'
+import {connect} from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
+import {switchMenu} from '../../redux/action';
 import styles from './index.less';
 
 const { Sider } = Layout;
 const { SubMenu } = Menu;
 
-export default class SlideMenu extends React.Component{
+class SlideMenu extends React.Component{
     state = {
         currentKey: '/home',
         menus: []
@@ -24,6 +26,8 @@ export default class SlideMenu extends React.Component{
     }
 
     handleClick=({item, key})=>{
+        const {dispatch} = this.props;
+        dispatch(switchMenu(item.props.children));
         this.setState({
             currentKey:key
         })
@@ -31,10 +35,11 @@ export default class SlideMenu extends React.Component{
 
     componentWillMount(){
         let { menusData } = this.props;
-        let currentKey = window.location.hash.replace(/#|\?.*$/g, '');
+        //let currentKey = window.location.hash.replace(/#|\?.*$/g, '');
+        let currentKey = window.location.href.substring(window.location.href.lastIndexOf("/"));
         let menus = this.getNavMenuItems(menusData);
         this.setState({
-            currentKey: [currentKey],
+            currentKey: currentKey,
             menus
         })
     }
@@ -92,3 +97,5 @@ export default class SlideMenu extends React.Component{
         )
     }
 }
+
+export default connect()(SlideMenu);

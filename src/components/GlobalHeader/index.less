@@ -6,6 +6,14 @@
     padding: 0 12px 0 0;
     background-color: white;
     box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+    >.title{
+        height: 64px;
+        line-height: 64px;
+        font-size: 16px;
+        >a{
+            color: @colorC;
+        }
+    }
 }
 
 :global{
@@ -25,7 +33,6 @@
 }
 
 i.trigger{
-    vertical-align: middle;
     cursor: pointer;
     padding: 0 24px;
     transition: all 0.3s;
@@ -63,3 +70,4 @@ i.trigger{
         color: @colorC;
     }
 }
+

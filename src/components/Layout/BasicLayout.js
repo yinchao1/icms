@@ -12,9 +12,9 @@ export default class BasicLayout extends React.PureComponent{
 
     state = {
         collapsed: false,
-        currentUser: {
-            name: 'chad.yin'
-        },
+        // currentUser: {
+        //     name: 'chad.yin'
+        // },
         menusData: MenuConfig
     }
 
@@ -54,8 +54,7 @@ export default class BasicLayout extends React.PureComponent{
                         <GlobalHeader
                             collapsed={this.state.collapsed}
                             onMenuClick={this.handleMenuClick}
-                            onCollapse={this.handleCollapse}
-                            currentUser={this.state.currentUser}/>
+                            onCollapse={this.handleCollapse}/>
                     </Header>
                     <Content style={{ margin: '24px 24px 0', height: '100%' }}>
                         {this.props.children}
