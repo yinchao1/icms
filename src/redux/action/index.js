@@ -6,9 +6,10 @@ export function login(userName){
     }
 }
 
-export function switchMenu(menuName){
+export function switchMenu(menuName,menuKey){
     return {
         type: 'SWITCHMENU',
-        menuName
+        menuName,
+        menuKey
     }
 }

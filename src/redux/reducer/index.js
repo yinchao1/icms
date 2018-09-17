@@ -1,17 +1,17 @@
 import {combineReducers} from 'redux';
 
 // const reducer = combineReducers({
-//     userInfo,
+//     login,
 //     switchMenu
 // });
 // export default reducer;
 
-//登录信息
-// function userInfo(state= {}, action){
+// //登录信息
+// function login(state= {}, action){
 //     return {
 //         ...state, 
 //         menus: action.menus,
-//         userInfo: action.userInfo
+//         userName: action.userName
 //     }
 // }
 
@@ -22,6 +22,7 @@ import {combineReducers} from 'redux';
 //         menuName: action.menuName
 //     }
 // }
+
 
 const initialState = {
     menus: ''
@@ -36,7 +37,8 @@ export default (state = initialState, action)=>{
         case "SWITCHMENU":{
             return {
                 ...state,
-                menuName: action.menuName
+                menuName: action.menuName,
+                menuKey: action.menuKey
             }
         }
         default:

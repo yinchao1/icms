@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import {withRouter, NavLink, Link} from 'react-router-dom';
 import { Menu, Icon, Tooltip, Spin, Dropdown, Avatar } from 'antd';
 import styles from './index.less'
+import { switchMenu } from '../../redux/action';
 
 class GlobalHeader extends React.PureComponent{
     
@@ -10,25 +12,29 @@ class GlobalHeader extends React.PureComponent{
         onCollapse(!collapsed);
     }
 
+    onMenuClick=({item, key})=>{
+        const {dispatch} = this.props;
+        dispatch(switchMenu(item.props.children, key));
+    }
+
     render(){
         const{
             menuName,
             userName,
             collapsed,
-            onMenuClick,
         } = this.props;
 
         const menu = (
-          <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
+          <Menu className={styles.menu} selectedKeys={[]} onClick={this.onMenuClick}>
             <Menu.Item disabled key="user">
                 <Icon type="user"/>个人中心
             </Menu.Item>
-            <Menu.Item key="setting">
-                <Icon type="setting"/>设置
+            <Menu.Item key="/3">
+                <Icon type="setting"/><Link style={{display: 'inline-block'}} to="/3">设置</Link>
             </Menu.Item>
             <Menu.Divider/>
-            <Menu.Item key="logout">
-                <Icon type="logout"/>退出登录
+            <Menu.Item key="/login">
+                <Icon type="logout"/><Link style={{display: 'inline-block'}} to="/login">退出登录</Link>
             </Menu.Item>
           </Menu>  
         );
@@ -65,4 +71,4 @@ export default connect(state => {
         userName: state.userName,
         menuName: state.menuName
     }
-})(GlobalHeader)
+})(withRouter(GlobalHeader))

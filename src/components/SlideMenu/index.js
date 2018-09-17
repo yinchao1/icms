@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
 import {switchMenu} from '../../redux/action';
+import menusData from '../../config/icms'
 import styles from './index.less';
 
 const { Sider } = Layout;
@@ -27,15 +28,13 @@ class SlideMenu extends React.Component{
 
     handleClick=({item, key})=>{
         const {dispatch} = this.props;
-        dispatch(switchMenu(item.props.children));
+        dispatch(switchMenu(item.props.children, key));
         this.setState({
             currentKey:key
         })
     }
 
     componentWillMount(){
-        let { menusData } = this.props;
-        //let currentKey = window.location.hash.replace(/#|\?.*$/g, '');
         let currentKey = window.location.href.substring(window.location.href.lastIndexOf("/"));
         let menus = this.getNavMenuItems(menusData);
         this.setState({
@@ -88,7 +87,7 @@ class SlideMenu extends React.Component{
                 <Menu
                     theme='dark'
                     mode='inline'
-                    selectedKeys={this.state.currentKey}
+                    selectedKeys={this.props.menuKey || this.state.currentKey}
                     onClick={this.handleClick}
                     style={{ padding: '16px 0', width: '100%' }}>
                     {this.state.menus}
@@ -98,4 +97,8 @@ class SlideMenu extends React.Component{
     }
 }
 
-export default connect()(SlideMenu);
+export default connect(state=>{
+    return {
+        menuKey: state.menuKey
+    }
+})(SlideMenu);

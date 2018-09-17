@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux';
+import {Route, Redirect} from 'react-router-dom';
 import {login} from '../../redux/action';
 import { Form, Input, Icon, Button, Tabs, Row, Col, Checkbox, message } from 'antd';
 import logo from '../../assets/images/logo.svg';
@@ -10,7 +11,8 @@ class Login extends React.Component{
 
     state={
         autoLogin: true,
-        activeKey: "1"
+        activeKey: "1",
+        redirect: false
     }
 
     handleTabChange=(key)=>{
@@ -36,6 +38,7 @@ class Login extends React.Component{
 
         const {dispatch} = this.props;
         dispatch(login(account.username));
+
 
         this.props.history.push("/home");
     }

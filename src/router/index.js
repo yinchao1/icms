@@ -29,6 +29,7 @@ export default class IRouter extends React.Component{
                                     <Route path="/home" component={Home}/>
                                     <Route path="/error403" component={Error403}/>
                                     <Route path="/error500" component={Error500}/>
+                                    <Route path="/3" component={Error404}/>
                                     <Route component={Error404}/>
                                 </Switch>
                             </BasicLayout>
