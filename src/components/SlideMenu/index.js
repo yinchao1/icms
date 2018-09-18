@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux';
 import { Layout, Menu, Icon } from 'antd';
 import { Link, NavLink } from 'react-router-dom';
-import {switchMenu} from '../../redux/action';
+import IcmsActionCreator from '../../redux/action';
 import menusData from '../../config/icms'
 import styles from './index.less';
 
@@ -28,7 +28,7 @@ class SlideMenu extends React.Component{
 
     handleClick=({item, key})=>{
         const {dispatch} = this.props;
-        dispatch(switchMenu(item.props.children, key));
+        dispatch(IcmsActionCreator.switchMenu(item.props.children, key));
         this.setState({
             currentKey:key
         })

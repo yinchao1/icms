@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
-import {Route, Redirect} from 'react-router-dom';
-import {login} from '../../redux/action';
 import { Form, Input, Icon, Button, Tabs, Row, Col, Checkbox, message } from 'antd';
+import IcmsActionCreator from '../../redux/action';
 import logo from '../../assets/images/logo.svg';
 import styles from './index.less';
 
@@ -37,7 +36,7 @@ class Login extends React.Component{
         // window.location.href = "http://localhost:3000/home";
 
         const {dispatch} = this.props;
-        dispatch(login(account.username));
+        dispatch(IcmsActionCreator.login(account.username));
 
 
         this.props.history.push("/home");
